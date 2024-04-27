@@ -36,6 +36,7 @@ int main(void)
 
   einlesen(p);
   ausgabe(p);
+  
   Vector lsg{berechne_gerade(p)};
   ausgabe_gerade(lsg);
 
