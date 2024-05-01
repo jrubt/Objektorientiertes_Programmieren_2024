@@ -88,11 +88,6 @@ double *anlegen(int n)
   // Anlegen des Speichers
   v = new (nothrow) double[n];
 
-  // if (v == nullptr)
-  // {
-  //   cerr << "Fehler beim Anlegen vom Vektor v mit " << n < " double-Elementen!" << endl;
-  //   exit(1);
-  // }
   assert(v != nullptr); // falls Bedingung NICHT zutrifft, wird Programm beendet
                         //   mit Hinweis auf diese Sourcecodezeile
   return v;
