@@ -2,3 +2,9 @@
 .vscode/launch.json
 .vscode/settings.json
 .vscode/tasks.json
+vorlage_01c_dyn_arr.cpp
+vorlage_01b_pseudo_dyn_arr.cpp
+vorlage_01a_stat_arr.cpp
+demo_01c_ausgleich_struct_dyn_arr
+demo_01b_ausgleich_struct_pseudo_dyn_arr
+demo_01a_ausgleich_struct_stat_arr

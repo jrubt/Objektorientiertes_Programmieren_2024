@@ -7,37 +7,72 @@
 
 using namespace std;
 
+double *anlegen(int n);
+
 // selbst definierter 2D-Vektor, da die Loesung 2 Komponenten hat
-struct Vector
+struct Gerade
 {
   double a{0};
   double b{0};
 };
 
-struct Ausgleichsproblem
+struct Messreihe
 {
-  int n{0};
-  string name{"default"};
-  double *x{nullptr};
-  double *y{nullptr};
+  int n;
+  string name;
+  double *x;
+  double *y;
+  Messreihe(int ){
+
+  };
+  Messreihe()
+  {
+    int i = 0;
+    cout << "Einlesen der Messwerte:" << endl;
+
+    cout << "  Anzahl der Messwerte: ";
+    cin >> n;
+    cout << "  Name der Messreihe: ";
+    cin >> name;
+
+    x = anlegen(n);
+    y = anlegen(n);
+    cout << "  x-Werte eingeben: ";
+    while (i < n && !cin.fail())
+    {
+      cin >> x[i];
+      ++i;
+    }
+    cout << "  y-Werte eingeben: ";
+    i = 0;
+    while (i < n && !cin.fail())
+    {
+      cin >> y[i];
+      ++i;
+    }
+    cout << endl;
+  };
 };
 
-void einlesen(Ausgleichsproblem &p);
-double *anlegen(int n);
-void ausgabe(const Ausgleichsproblem &p);
-void ausgabe_gerade(const Vector &v);
-Vector berechne_gerade(const Ausgleichsproblem &p);
-void freigabe(Ausgleichsproblem &p);
+void ausgabe(const Messreihe &p);
+void ausgabe_gerade(const Gerade &v);
+Gerade berechne_gerade(const Messreihe &p);
+void freigabe(Messreihe &p);
 
 int main(void)
 {
   // initialisieren mit default-Werten
-  Ausgleichsproblem p{};
-
-  einlesen(p);
+  //Messreihe p = Messreihe();
+Messreihe p{
+    //
+      3,
+      "nur angelegte Messreihe mit 3 Werten",
+      new double[3]{1.0, 2.0, 3.0},
+      new double[3]{2.5, 3.5, 4.5}
+  };
   ausgabe(p);
-  
-  Vector lsg{berechne_gerade(p)};
+
+  Gerade lsg{berechne_gerade(p)};
   ausgabe_gerade(lsg);
 
   // Freigabe
@@ -63,46 +98,15 @@ double *anlegen(int n)
   return v;
 }
 
-void einlesen(Ausgleichsproblem &p)
+void ausgabe(const Messreihe &p)
 {
-  int i = 0;
-  cout << "Einlesen der Messwerte:" << endl;
-
-  cout << "  Anzahl der Messwerte: ";
-  cin >> p.n;
-  cout << "  Name der Messreihe: ";
-  cin >> p.name;
-
-  p.x = anlegen(p.n);
-  p.y = anlegen(p.n);
-  cout << "  x-Werte eingeben: ";
-  while (i < p.n && !cin.fail())
-  {
-    cin >> p.x[i];
-    ++i;
-  }
-  cout << "  y-Werte eingeben: ";
-  i = 0;
-  while (i < p.n && !cin.fail())
-  {
-    cin >> p.y[i];
-    ++i;
-  }
-  cout << endl;
-}
-
-void ausgabe(const Ausgleichsproblem &p)
-{
-  // nicht erlaubt:
-  //   x[0] = -1;
-
   cout << "Ausgabe der Messwerte fuer " << p.name << " :" << endl;
   for (int i = 0; i < p.n; i++)
     cout << "(x[" << setw(2) << i << "], y[" << setw(2) << i
          << "]) = (" << p.x[i] << ", " << p.y[i] << ")" << endl;
 }
 
-Vector berechne_gerade(const Ausgleichsproblem &p)
+Gerade berechne_gerade(const Messreihe &p)
 {
   double sx, sy, sxy, sx2;
 
@@ -117,10 +121,10 @@ Vector berechne_gerade(const Ausgleichsproblem &p)
 
   double a = (sxy - sx * sy / p.n) / (sx2 - pow(sx, 2) / p.n);
   double b = (sy - a * sx) / p.n;
-  return Vector{a, b};
+  return Gerade{a, b};
 }
 
-void ausgabe_gerade(const Vector &v)
+void ausgabe_gerade(const Gerade &v)
 {
   cout << endl
        //      << "  Optimale Paramter (a,b) = ("
@@ -128,7 +132,7 @@ void ausgabe_gerade(const Vector &v)
        << "  Optimale Gerade : y = " << v.a << "*x + " << v.b << '\n';
 }
 
-void freigabe(Ausgleichsproblem &p)
+void freigabe(Messreihe &p)
 {
   delete[] p.x;
   p.x = nullptr;
