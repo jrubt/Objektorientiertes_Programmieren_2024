@@ -23,7 +23,6 @@ struct Messreihe
   double *x;
   double *y;
   Messreihe(int ){
-
   };
   Messreihe()
   {
