@@ -39,16 +39,19 @@ int main(void)
 {
   // Ueberschreiben der Initialisierungswerte in der Struktur
   Messreihe_Dyn p_bsp{
-      // "designated initialization" (C++20) 
+      // "designated initialization" (C++20)
       // (unvollstaendige Wertzuweisung moeglich, Reihenfolge der Komponenten darf aber nicht geaendert werden)
       .n = 3,
       //"nur angelegte Messreihe mit 3 Werten",
       .x = new double[3]{1.0, 2.0, 3.0},
       .y = new double[3]{2.5, 3.5, 4.5}};
   p_bsp.name = "nur angelegte Messreihe mit 3 Werten";
+
+  cout << "Beispieldatensatz:" << '\n';
+  ausgabe(p_bsp);
+
   // Initialisieren mit default-Werten, die in Strukturdefinition mit "{..}" gesetzt wurden
   Messreihe_Dyn p;
-  ausgabe(p_bsp);
   einlesen(p);
   ausgabe(p);
 

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-/* maxgitimale Vektorgroesse */
+/* maximale Vektorgroesse */
 const int NMAX = 100;
 const int NMAX_DOPPELT{2 * NMAX};
 
