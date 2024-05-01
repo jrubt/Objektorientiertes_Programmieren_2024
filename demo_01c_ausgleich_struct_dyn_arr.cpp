@@ -39,12 +39,13 @@ int main(void)
 {
   // Ueberschreiben der Initialisierungswerte in der Struktur
   Messreihe_Dyn p_bsp{
-    //
-      .n=3,
+      // "designated initialization" (C++20) 
+      // (unvollstaendige Wertzuweisung moeglich, Reihenfolge der Komponenten darf aber nicht geaendert werden)
+      .n = 3,
       //"nur angelegte Messreihe mit 3 Werten",
-      .x=new double[3]{1.0, 2.0, 3.0},
-      .y=new double[3]{2.5, 3.5, 4.5},
-  };
+      .x = new double[3]{1.0, 2.0, 3.0},
+      .y = new double[3]{2.5, 3.5, 4.5}};
+  p_bsp.name = "nur angelegte Messreihe mit 3 Werten";
   // Initialisieren mit default-Werten, die in Strukturdefinition mit "{..}" gesetzt wurden
   Messreihe_Dyn p;
   ausgabe(p_bsp);
@@ -80,7 +81,7 @@ double *anlegen(int n)
 
 void einlesen(Messreihe_Dyn &p)
 {
-  
+
   int i = 0;
 
   cout << "Name der Messreihe:" << endl;
@@ -148,8 +149,8 @@ Gerade berechne_gerade(const Messreihe_Dyn &p)
   */
 
   return {a, b}; // "anonyme" Strukturvariable (ohne Variablennamen)
-                       //   mit den Werten a, b zurueckgeben
-                       //  es geht sogar ohne Typangabe;
+                 //   mit den Werten a, b zurueckgeben
+                 //  es geht sogar ohne Typangabe;
 }
 
 void ausgabe_gerade(const Gerade &v)

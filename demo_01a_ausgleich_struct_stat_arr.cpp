@@ -52,7 +52,9 @@ int main(void)
   Koordinaten_Stat y1{bsp_satz_y_koord()};    // "direct-list-initialization" (C++11)
   // Koordinaten_Stat y1=(bsp_satz_y_koord());
   // Koordinaten_Stat y1(bsp_satz_y_koord());
+
   Koordinaten_Doppelt_Stat x2, y2;
+
   cout << "Beispieldatensatz:" << '\n';
   ausgabe(x1, y1);
   ausgabe_gerade(berechne_gerade(x1, y1));

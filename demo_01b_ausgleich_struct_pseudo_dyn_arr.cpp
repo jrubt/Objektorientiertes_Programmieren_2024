@@ -12,7 +12,7 @@
 
 using namespace std;
 
-/* mamimale Vektorgroesse */
+/* maxgitimale Vektorgroesse */
 const int NMAX = 100;
 const int NMAX_DOPPELT{2 * NMAX};
 
@@ -110,7 +110,7 @@ Messreihe_PseudoDyn bsp_satz()
 // jeder Messpunkt wird verdoppelt
 void verdoppeln(const Messreihe_PseudoDyn &m_quelle, Messreihe_PseudoDyn &m_doppelt)
 {
-  m_doppelt.n=2*m_quelle.n;
+  m_doppelt.n = 2 * m_quelle.n;
   for (int i = 0; i < m_quelle.n; ++i)
   {
     m_doppelt.x[2 * i] = m_doppelt.x[2 * i + 1] = m_quelle.x[i];
@@ -123,8 +123,10 @@ void ausgabe(const Messreihe_PseudoDyn &m)
 {
   cout << "Ausgabe der Messwerte:" << endl;
   for (int i = 0; i < m.n; i++)
+  {
     cout << "(x[" << setw(2) << i << "], y[" << setw(2) << i
          << "]) = (" << m.x[i] << ", " << m.y[i] << ")" << endl;
+  }
 }
 
 Gerade berechne_gerade(const Messreihe_PseudoDyn &m)
@@ -149,5 +151,5 @@ Gerade berechne_gerade(const Messreihe_PseudoDyn &m)
 void ausgabe_gerade(const Gerade &g)
 {
   cout << endl
-       << "  Optimale Gerade : y = " << g.a << "*m + " << g.b << '\n';
+       << "  Optimale Gerade : y = " << g.a << "*x + " << g.b << '\n';
 }

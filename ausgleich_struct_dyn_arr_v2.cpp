@@ -22,17 +22,22 @@ struct Messreihe
   string name;
   double *x;
   double *y;
-  Messreihe(int ){
+  Messreihe(int n_, string name_, double *x_, double *y_)
+  {
+    n = n_;
+    name = name_;
+    x = x_;
+    y = y_;
   };
   Messreihe()
   {
     int i = 0;
+    cout << "  Name der Messreihe: ";
+    cin >> name;
     cout << "Einlesen der Messwerte:" << endl;
 
     cout << "  Anzahl der Messwerte: ";
     cin >> n;
-    cout << "  Name der Messreihe: ";
-    cin >> name;
 
     x = anlegen(n);
     y = anlegen(n);
@@ -61,16 +66,16 @@ void freigabe(Messreihe &p);
 int main(void)
 {
   // initialisieren mit default-Werten
-  //Messreihe p = Messreihe();
-Messreihe p{
-    //
+  // Messreihe p = Messreihe();
+  Messreihe p_bsp{
+      //
       3,
       "nur angelegte Messreihe mit 3 Werten",
       new double[3]{1.0, 2.0, 3.0},
-      new double[3]{2.5, 3.5, 4.5}
-  };
+      new double[3]{2.5, 3.5, 4.5}};
+  ausgabe(p_bsp);
+  Messreihe p;
   ausgabe(p);
-
   Gerade lsg{berechne_gerade(p)};
   ausgabe_gerade(lsg);
 
